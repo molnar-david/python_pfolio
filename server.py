@@ -15,7 +15,7 @@ def html_page(page_name):
 
 
 def write_to_txt(data):
-    with open('database.txt', mode='a') as database:
+    with open('python_pfolio/database.txt', mode='a') as database:
         email = data['email']
         subject = data['subject']
         message = data['message']
@@ -23,7 +23,7 @@ def write_to_txt(data):
 
 
 def write_to_csv(data):
-    with open('database.csv', mode='a', newline='') as database:
+    with open('python_pfolio/database.csv', mode='a', newline='') as database:
         email = data['email']
         subject = data['subject']
         message = data['message']
@@ -38,8 +38,9 @@ def submit_form():
             data = request.form.to_dict()
             write_to_csv(data)
             write_to_txt(data)
+            print(data, flush=True)
             return redirect('/thankyou.html')
         except:
             return 'did not save to database'
     else:
-        return'Smth went wrong. Try again!'
+        return 'Smth went wrong. Try again!'
